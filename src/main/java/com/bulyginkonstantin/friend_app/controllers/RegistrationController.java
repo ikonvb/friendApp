@@ -27,6 +27,7 @@ public class RegistrationController {
         return "register";
     }
 
+
     @PostMapping
     public String register(@Valid Client client, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
@@ -42,5 +43,20 @@ public class RegistrationController {
         clientRepository.save(client);
         return "redirect:/login";
     }
+
+//    @GetMapping("/registerr")
+//    public String register(Model model) {
+//        Client client = new Client();
+//        model.addAttribute("clientAccount", client);
+//        return "registerr";
+//    }
+//
+//    @PostMapping("/registerr/save")
+//    public String saveAccount(Model model, Client client) {
+//
+//        client.setPassword(passwordEncoder.encode(client.getPassword()));
+//        clientRepository.save(client);
+//        return "redirect:/login";
+//    }
 
 }
