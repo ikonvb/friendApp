@@ -12,32 +12,34 @@
             <div class="col-6">
                 <h3 class="display-4">Login</h3>
 
-<!--                <form method="post" th:action="@{/login}" th:object="${client}">-->
+                <form method="post" th:action="@{/login}" th:object="${client}">
 
-<!--                    &lt;!&ndash;handle errors&ndash;&gt;-->
-<!--                    <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">-->
-<!--                        There are errors-->
-<!--                    </div>-->
+                    <!--handle errors-->
+                    <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                        There are errors
+                    </div>
 
-<!--                    &lt;!&ndash;firstname field&ndash;&gt;-->
-<!--                    <div class="form-group mb-3">-->
-<!--                        <label for="username">User name:</label>-->
-<!--                        <input id="username" type="text" class="form-control" th:field="*{username}"-->
-<!--                               placeholder="User name">-->
-<!--                        <span class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>-->
-<!--                    </div>-->
+                    <!--firstname field-->
+                    <div class="form-group mb-3">
+                        <label for="login">Login:</label>
+                        <input id="login" type="text" class="form-control" th:field="*{login}"
+                               placeholder="login">
+                        <span class="error" th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></span>
+                    </div>
 
-<!--                    &lt;!&ndash;password field&ndash;&gt;-->
-<!--                    <div class="form-group mb-3">-->
-<!--                        <label for="password">Password:</label>-->
-<!--                        <input id="password" type="password" class="form-control" th:field="*{password}">-->
-<!--                        <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>-->
-<!--                    </div>-->
+                    <!--password field-->
+                    <div class="form-group mb-3">
+                        <label for="password">Password:</label>
+                        <input id="password" type="password" class="form-control" th:field="*{password}">
+                        <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+                    </div>
 
 
-<!--                    <button class="btn btn-danger">login</button>-->
+                    <button class="btn btn-danger">login</button>
 
-<!--                </form>-->
+                    <a class="nav-link" th:href="@{/register}">If you don`t have an account go there</a>
+
+                </form>
             </div>
             <div class="col"></div>
         </div>
