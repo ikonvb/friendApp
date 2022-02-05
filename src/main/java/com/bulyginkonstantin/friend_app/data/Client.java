@@ -1,6 +1,5 @@
 package com.bulyginkonstantin.friend_app.data;
 
-import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,8 +11,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table(name = "client")
-@Data
+@Table(name = "clients")
 public class Client implements UserDetails {
 
     public static final long serialVersionUID = 1L;
@@ -22,25 +20,21 @@ public class Client implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Size(min = 2, message = "login must be at least 2 character long")
+    @Column(name = "login")
+    private String login;
+
     @Size(min = 2, message = "Name must be at least 2 character long")
-    @Column(name = "first_name")
-    private String username;
+    @Column(name = "firstname")
+    private String userName;
 
-    @Size(min = 2, message = "lastName must be at least 2 character long")
-    @Column(name = "last_name")
+    @Size(min = 2, message = "Last name must be at least 2 character long")
+    @Column(name = "lastname")
     private String lastName;
-
-    @Size(min = 6, message = "phone must be at least 6 character long")
-    @Column(name = "phone")
-    private String phone;
 
     @Email(message = "Please enter a valid email")
     @Column(name = "email")
     private String email;
-
-    @Size(min = 2, message = "login must be at least 2 character long")
-    @Column(name = "login")
-    private String login;
 
     @Size(min = 4, message = "password must be at least 4 character long")
     @Column(name = "password")
@@ -49,6 +43,79 @@ public class Client implements UserDetails {
     @Transient
     private String confirmPassword;
 
+    public Client() {
+    }
+
+    public Client(String login, String userName, String lastName, String email, String password, String confirmPassword) {
+        this.login = login;
+        this.userName = userName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return userName;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

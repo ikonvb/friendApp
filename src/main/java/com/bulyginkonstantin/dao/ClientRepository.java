@@ -1,4 +1,4 @@
-package com.bulyginkonstantin.friend_app.service;
+package com.bulyginkonstantin.dao;
 
 import com.bulyginkonstantin.friend_app.data.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
