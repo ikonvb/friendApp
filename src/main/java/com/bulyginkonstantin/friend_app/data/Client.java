@@ -1,77 +1,110 @@
 package com.bulyginkonstantin.friend_app.data;
 
-import lombok.Data;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Size;
-import java.util.Collection;
-import java.util.List;
+import java.util.Objects;
 
 @Entity
-@Table(name = "client")
-@Data
-public class Client implements UserDetails {
+@Table(name = "clients")
+public class Client {
 
     public static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
-    @Size(min = 2, message = "Name must be at least 2 character long")
-    @Column(name = "first_name")
-    private String username;
-
-    @Size(min = 2, message = "lastName must be at least 2 character long")
-    @Column(name = "last_name")
-    private String lastName;
-
-    @Size(min = 6, message = "phone must be at least 6 character long")
-    @Column(name = "phone")
-    private String phone;
-
-    @Email(message = "Please enter a valid email")
-    @Column(name = "email")
-    private String email;
-
-    @Size(min = 2, message = "login must be at least 2 character long")
     @Column(name = "login")
     private String login;
 
-    @Size(min = 4, message = "password must be at least 4 character long")
+    @Column(name = "email")
+    private String email;
+
     @Column(name = "password")
     private String password;
 
     @Transient
     private String confirmPassword;
 
+//    @OneToMany
+//    private List<Friend> friends;
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+//    public List<Friend> getFriends() {
+//        return friends;
+//    }
+//
+//    public void setFriends(List<Friend> friends) {
+//        this.friends = friends;
+//    }
+
+    public Client(String login, String email, String password, String confirmPassword) {
+        this.login = login;
+        this.email = email;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
+    }
+
+    public Client() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 
     @Override
-    public boolean isAccountNonExpired() {
-        return true;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Client client = (Client) o;
+        return id.equals(client.id) && login.equals(client.login) && email.equals(client.email) && password.equals(client.password) && Objects.equals(confirmPassword, client.confirmPassword);
     }
 
     @Override
-    public boolean isAccountNonLocked() {
-        return true;
+    public int hashCode() {
+        return Objects.hash(id, login, email, password, confirmPassword);
     }
 
     @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

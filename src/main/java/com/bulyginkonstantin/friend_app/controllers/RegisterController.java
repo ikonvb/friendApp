@@ -6,33 +6,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/login")
-public class LoginController {
+@RequestMapping("/register")
+public class RegisterController {
 
     @Autowired
     ClientService clientService;
 
-    @GetMapping
-    public String login(Model model) {
+    //register form
+    @GetMapping("/new")
+    public String register(Model model) {
         Client client = new Client();
         model.addAttribute("client", client);
-        return "login";
+        return "register";
     }
 
-    @PostMapping
-    public String login(Client client, Model model) {
-
-        Client loggedClient = clientService.loginClient(client.getLogin(), client.getPassword());
-
-        if (loggedClient != null) {
-            model.addAttribute("client", loggedClient);
-            return "profile";
-        } else {
-            return "login";
-        }
+    //save to DB from register form
+    @PostMapping("/save")
+    public String saveAccount(@ModelAttribute Client client) {
+        clientService.registerClient(client.getLogin(), client.getEmail(), client.getPassword(), client.getConfirmPassword());
+        return "login";
     }
 }

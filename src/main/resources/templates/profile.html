@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layouts :: header"></head>
+<nav th:replace="layouts :: navbar"></nav>
+<body>
+
+<div class="container mt-5 col-3">
+
+    <form th:action="@{/profile}" th:object="${client}" method="post">
+
+        <input type="hidden" th:field="${client.id}">
+
+        <h3 class="text-center">Profile Form</h3>
+
+        <!--Filed for login -->
+        <div class="form-group m-3">
+            <input type="text" th:field="*{login}" placeholder="Login" class="form-control"/>
+        </div>
+
+        <!--Filed for email -->
+        <div class="form-group m-3">
+            <input type="text" th:field="*{email}" placeholder="Email" class="form-control" required/>
+        </div>
+
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
+
+        <div class="form-group m-3">
+            <a th:href="@{'/profile/delete/' + ${client.id}}" class="btn btn-primary btn-block"
+               onclick="if (!(confirm('Are you sure?'))) return false">Delete</a>
+            <a th:href="@{'/profile/findFriend/'+ ${client.id}}" class="btn btn-primary btn-block">Find friends</a>
+            <a th:href="@{'/profile/showFriends/' + ${client.id}}" class="btn btn-primary btn-block">Show friends</a>
+            <a th:href="@{/logout}" class="btn btn-primary btn-block">Log out</a>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
