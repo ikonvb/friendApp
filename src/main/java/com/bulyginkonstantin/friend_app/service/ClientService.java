@@ -14,13 +14,14 @@ public class ClientService {
     @Autowired
     ClientRepository clientRepository;
 
-    public Client registerClient(String login, String email, String password, String confirmPassword) {
+    public Client registerClient(String login, String userName, String email, String password, String confirmPassword) {
 
-        if (login == null || password == null || !password.equalsIgnoreCase(confirmPassword)) {
+        if (login == null || userName == null || password == null || !password.equalsIgnoreCase(confirmPassword)) {
             return null;
         } else {
             Client client = new Client();
             client.setLogin(login);
+            client.setUserName(userName);
             client.setEmail(email);
             client.setPassword(password);
             return clientRepository.save(client);
@@ -37,6 +38,10 @@ public class ClientService {
 
     public Optional<Client> findByLoginAndPassword(String login, String password) {
         return clientRepository.findByLoginAndPassword(login, password);
+    }
+
+    public List<Client> findAllByUserName(String userName) {
+        return clientRepository.findAllByUserName(userName);
     }
 
     public Optional<Client> findFirstByLogin(String login) {
