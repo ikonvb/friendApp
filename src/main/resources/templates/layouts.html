@@ -13,5 +13,10 @@
 <nav class="nav" th:fragment="navbar">
     <a class="nav-link active" aria-current="page" th:href="@{/register/new}">Register</a>
     <a class="nav-link" th:href="@{/login}">Login</a>
+    <a class="nav-link" th:href="@{/logout}">Logout</a>
+    <form th:if="${principal != null}" method="post" th:action="@{/logout}">
+        <span class="text-white" th:text="${principal}"></span>
+        <button class="btn btn-secondary">Log out</button>
+    </form>
 </nav>
 </html>

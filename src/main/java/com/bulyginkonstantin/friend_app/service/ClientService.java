@@ -5,6 +5,9 @@ import com.bulyginkonstantin.friend_app.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class ClientService {
 
@@ -28,4 +31,23 @@ public class ClientService {
         return clientRepository.findByLoginAndPassword(login, password).orElse(null);
     }
 
+    public List<Client> findAll() {
+        return clientRepository.findAll();
+    }
+
+    public Optional<Client> findByLoginAndPassword(String login, String password) {
+        return clientRepository.findByLoginAndPassword(login, password);
+    }
+
+    public Optional<Client> findFirstByLogin(String login) {
+        return clientRepository.findFirstByLogin(login);
+    }
+
+    public Client findById(int id) {
+        return clientRepository.findById(id);
+    }
+
+    public void delete(Client client) {
+        clientRepository.delete(client);
+    }
 }

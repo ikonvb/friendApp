@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -25,12 +24,12 @@ public class LoginController {
     }
 
     @PostMapping
-    public String login(@ModelAttribute Client client, Model model) {
+    public String login(Client client, Model model) {
 
         Client loggedClient = clientService.loginClient(client.getLogin(), client.getPassword());
 
         if (loggedClient != null) {
-            model.addAttribute("clientAccount", loggedClient);
+            model.addAttribute("client", loggedClient);
             return "profile";
         } else {
             return "login";
