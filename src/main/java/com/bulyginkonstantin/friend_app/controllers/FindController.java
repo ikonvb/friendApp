@@ -30,15 +30,15 @@ public class FindController {
     @PostMapping("/result")
     public String showFindPerson(Client client, Model model) {
 
-        if (client.getLogin().isEmpty()) {
-            List<Client> clients = clientService.findAll();
-            model.addAttribute("clientsList", clients);
-            return "clients";
+        List<Client> clients;
+
+        if (client.getUserName().isEmpty()) {
+            clients = clientService.findAll();
         } else {
-            Client c = clientService.findFirstByLogin(client.getLogin()).orElse(null);
-            model.addAttribute("client", c);
-            return "findfriend";
+            clients = clientService.findAllByUserName(client.getUserName());
         }
+        model.addAttribute("clientsList", clients);
+        return "clients";
 
     }
 }

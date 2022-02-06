@@ -7,14 +7,15 @@ import java.util.Objects;
 @Table(name = "clients")
 public class Client {
 
-    public static final long serialVersionUID = 1L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "login")
     private String login;
+
+    @Column(name = "user_name")
+    private String userName;
 
     @Column(name = "email")
     private String email;
@@ -36,8 +37,18 @@ public class Client {
 //        this.friends = friends;
 //    }
 
-    public Client(String login, String email, String password, String confirmPassword) {
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public Client(String login, String userName, String email, String password, String confirmPassword) {
         this.login = login;
+        this.userName = userName;
         this.email = email;
         this.password = password;
         this.confirmPassword = confirmPassword;
@@ -91,12 +102,12 @@ public class Client {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Client client = (Client) o;
-        return id.equals(client.id) && login.equals(client.login) && email.equals(client.email) && password.equals(client.password) && Objects.equals(confirmPassword, client.confirmPassword);
+        return Objects.equals(id, client.id) && Objects.equals(login, client.login) && Objects.equals(userName, client.userName) && Objects.equals(email, client.email) && Objects.equals(password, client.password) && Objects.equals(confirmPassword, client.confirmPassword);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, login, email, password, confirmPassword);
+        return Objects.hash(id, login, userName, email, password, confirmPassword);
     }
 
     @Override
@@ -104,6 +115,7 @@ public class Client {
         return "Client{" +
                 "id=" + id +
                 ", login='" + login + '\'' +
+                ", userName='" + userName + '\'' +
                 ", email='" + email + '\'' +
                 '}';
     }
