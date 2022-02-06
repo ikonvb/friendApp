@@ -1,41 +1,34 @@
 package com.bulyginkonstantin.friend_app.controllers;
 
 import com.bulyginkonstantin.friend_app.data.Client;
-import com.bulyginkonstantin.dao.ClientRepository;
+import com.bulyginkonstantin.friend_app.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/register")
 public class RegisterController {
 
     @Autowired
-    private ClientRepository clientRepository;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    ClientService clientService;
 
     //register form
-    @GetMapping("/register")
+    @GetMapping("/new")
     public String register(Model model) {
         Client client = new Client();
-        model.addAttribute("clientAccount", client);
+        model.addAttribute("client", client);
         return "register";
     }
 
     //save to DB from register form
-    @PostMapping("/register/save")
-    public String saveAccount(Model model, Client client) {
-
-        client.setPassword(passwordEncoder.encode(client.getPassword()));
-        if (!client.getPassword().equalsIgnoreCase(client.getConfirmPassword())) {
-            model.addAttribute("passNotMatch", "Password do not match");
-            return "register";
-        }
-        clientRepository.save(client);
-        return "redirect:/profile";
+    @PostMapping("/save")
+    public String saveAccount(@ModelAttribute Client client) {
+        clientService.registerClient(client.getLogin(), client.getEmail(), client.getPassword(), client.getConfirmPassword());
+        return "login";
     }
-
 }

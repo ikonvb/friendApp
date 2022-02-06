@@ -8,41 +8,22 @@
 
 <div class="container mt-5 col-3">
 
-    <form th:action="@{/register/save}" th:object="${clientAccount}" method="post">
+    <form th:action="@{/register/save}" th:object="${client}" method="post">
 
         <h3 class="text-center">Registration Form</h3>
 
-        <!--Filed for errors -->
-<!--        <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">There are errors</div>-->
-
-        <!--Filed for login -->
         <div class="form-group m-3">
             <input type="text" th:field="*{login}" placeholder="Login" class="form-control"/>
-<!--            <span class="error" th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></span>-->
-        </div>
-
-        <!--Filed for userName -->
-        <div class="form-group m-3">
-            <input type="text" th:field="*{userName}" placeholder="User Name" class="form-control"/>
-<!--            <span class="error" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></span>-->
-        </div>
-
-        <!--Filed for lastname -->
-        <div class="form-group m-3">
-            <input type="text" th:field="*{lastName}" placeholder="Last name" class="form-control"/>
-<!--            <span class="error" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>-->
         </div>
 
         <!--Filed for email -->
         <div class="form-group m-3">
             <input type="text" th:field="*{email}" placeholder="Email" class="form-control" required/>
-<!--            <span class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>-->
         </div>
 
         <!--Filed for password -->
         <div class="form-group m-3">
             <input type="password" th:field="*{password}" placeholder="Password" class="form-control"/>
-<!--            <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>-->
         </div>
 
         <!--Filed for confirmPassword -->
@@ -56,11 +37,9 @@
 
         <div class="form-group m-3">
             <button type="submit" class="btn btn-primary btn-block">Register User</button>
+            <a th:href="@{/login}" class="btn btn-primary btn-block">Login</a>
         </div>
 
-        <p class="text-center">
-            Click <a th:href="@{/login}">here</a> to login.
-        </p>
     </form>
 </div>
 

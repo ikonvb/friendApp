@@ -12,17 +12,17 @@
 
 <div class="container mt-5 col-3">
 
-    <form th:action="@{/login}" method="post" class="form-signin">
+    <form th:action="@{/login}" method="post" class="form-signin" th:object="${client}">
 
         <h3 class="text-center">Login form</h3>
         <!--Filed for userName -->
         <div class="form-label-group m-3">
-            <input type="text" name="username" id="username" class="form-control fadeIn second"/>
+            <input type="text" th:field="*{login}" name="login" id="login" class="form-control fadeIn second"/>
         </div>
 
         <!--Filed for password -->
         <div class="form-label-group m-3">
-            <input type="password" name="password" id="password" class="form-control fadeIn second"/>
+            <input type="password" th:field="*{password}" name="password" id="password" class="form-control fadeIn second"/>
         </div>
 
         <div class="form-label-group m-3">
@@ -30,7 +30,7 @@
         </div>
 
         <p class="text-center">
-            Click <a th:href="@{/register}">here</a> to register.
+            Click <a th:href="@{/register/new}">here</a> to register.
         </p>
     </form>
 </div>

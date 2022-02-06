@@ -14,9 +14,4 @@ public class ProfileController {
         model.addAttribute("clientAccount", client);
         return "profile";
     }
-
-    @GetMapping("/profile/delete/{id}")
-    public String deleteProfile() {
-        return "profile";
-    }
 }

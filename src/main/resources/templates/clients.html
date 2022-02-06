@@ -9,13 +9,19 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-<div class="input-group mb-3">
-    <form th:action="@{/find/show}" method="post" class="form-signin">
-        <button class="btn btn-outline-secondary" type="submit" id="button-addon1">Find friends</button>
-        <input type="text" class="form-control" placeholder="" aria-label="Example text with button addon"
-               aria-describedby="button-addon1">
-    </form>
-</div>
-
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Login</th>
+        <th scope="col">Email</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="client : ${clientsList}">
+        <td th:text="${client.login}"/>
+        <td th:text="${client.email}"/>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

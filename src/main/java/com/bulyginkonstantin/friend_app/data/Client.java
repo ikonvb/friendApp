@@ -1,65 +1,56 @@
 package com.bulyginkonstantin.friend_app.data;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Size;
-import java.util.Collection;
-import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "clients")
-public class Client implements UserDetails {
+public class Client {
 
     public static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
-    @Size(min = 2, message = "login must be at least 2 character long")
     @Column(name = "login")
     private String login;
 
-    @Size(min = 2, message = "Name must be at least 2 character long")
-    @Column(name = "firstname")
-    private String userName;
-
-    @Size(min = 2, message = "Last name must be at least 2 character long")
-    @Column(name = "lastname")
-    private String lastName;
-
-    @Email(message = "Please enter a valid email")
     @Column(name = "email")
     private String email;
 
-    @Size(min = 4, message = "password must be at least 4 character long")
     @Column(name = "password")
     private String password;
 
     @Transient
     private String confirmPassword;
 
-    public Client() {
-    }
+//    @OneToMany
+//    private List<Friend> friends;
 
-    public Client(String login, String userName, String lastName, String email, String password, String confirmPassword) {
+//    public List<Friend> getFriends() {
+//        return friends;
+//    }
+//
+//    public void setFriends(List<Friend> friends) {
+//        this.friends = friends;
+//    }
+
+    public Client(String login, String email, String password, String confirmPassword) {
         this.login = login;
-        this.userName = userName;
-        this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.confirmPassword = confirmPassword;
     }
 
-    public int getId() {
+    public Client() {
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -71,22 +62,6 @@ public class Client implements UserDetails {
         this.login = login;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -95,14 +70,8 @@ public class Client implements UserDetails {
         this.email = email;
     }
 
-    @Override
     public String getPassword() {
         return password;
-    }
-
-    @Override
-    public String getUsername() {
-        return userName;
     }
 
     public void setPassword(String password) {
@@ -118,27 +87,24 @@ public class Client implements UserDetails {
     }
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("ROLE_USER"));
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Client client = (Client) o;
+        return id.equals(client.id) && login.equals(client.login) && email.equals(client.email) && password.equals(client.password) && Objects.equals(confirmPassword, client.confirmPassword);
     }
 
     @Override
-    public boolean isAccountNonExpired() {
-        return true;
+    public int hashCode() {
+        return Objects.hash(id, login, email, password, confirmPassword);
     }
 
     @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
+    public String toString() {
+        return "Client{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

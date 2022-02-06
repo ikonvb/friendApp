@@ -21,18 +21,6 @@
 <!--            <span class="error" th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></span>-->
         </div>
 
-        <!--Filed for userName -->
-        <div class="form-group m-3">
-            <input type="text" th:field="*{userName}" placeholder="User Name" class="form-control"/>
-<!--            <span class="error" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}"></span>-->
-        </div>
-
-        <!--Filed for lastname -->
-        <div class="form-group m-3">
-            <input type="text" th:field="*{lastName}" placeholder="Last name" class="form-control"/>
-<!--            <span class="error" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>-->
-        </div>
-
         <!--Filed for email -->
         <div class="form-group m-3">
             <input type="text" th:field="*{email}" placeholder="Email" class="form-control" required/>

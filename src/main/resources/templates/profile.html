@@ -20,35 +20,18 @@
             <input type="text" th:field="*{login}" placeholder="Login" class="form-control"/>
         </div>
 
-        <!--Filed for userName -->
-        <div class="form-group m-3">
-            <input type="text" th:field="*{userName}" placeholder="User Name" class="form-control"/>
-        </div>
-
-        <!--Filed for lastname -->
-        <div class="form-group m-3">
-            <input type="text" th:field="*{lastName}" placeholder="Last name" class="form-control"/>
-        </div>
-
         <!--Filed for email -->
         <div class="form-group m-3">
             <input type="text" th:field="*{email}" placeholder="Email" class="form-control" required/>
         </div>
 
-        <!--Filed for password -->
-        <div class="form-group m-3">
-            <input type="password" th:field="*{password}" placeholder="Password" class="form-control"/>
-            <!--            <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>-->
-        </div>
-
         <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
 
         <div class="form-group m-3">
-            <button type="submit" class="btn btn-primary btn-block">Edit</button>
-            <button type="submit" class="btn btn-primary btn-block">Delete</button>
-            <button type="submit" class="btn btn-primary btn-block">Find friends</button>
-            <button type="submit" class="btn btn-primary btn-block">Show friends</button>
-            <button type="submit" class="btn btn-primary btn-block">Log out</button>
+            <a th:href="@{/delete}" class="btn btn-primary btn-block">Delete</a>
+            <a th:href="@{/findFriends}" class="btn btn-primary btn-block">Find friends</a>
+            <a th:href="@{/showFriends}" class="btn btn-primary btn-block">Show friends</a>
+            <a th:href="@{/logout}" class="btn btn-primary btn-block">Log out</a>
         </div>
     </form>
 </div>

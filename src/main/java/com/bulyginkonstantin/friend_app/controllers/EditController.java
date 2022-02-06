@@ -1,7 +1,7 @@
 package com.bulyginkonstantin.friend_app.controllers;
 
+import com.bulyginkonstantin.friend_app.repository.ClientRepository;
 import com.bulyginkonstantin.friend_app.data.Client;
-import com.bulyginkonstantin.dao.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -31,7 +31,7 @@ public class EditController {
 
         client.setPassword(passwordEncoder.encode(client.getPassword()));
         if (!client.getPassword().equalsIgnoreCase(client.getConfirmPassword())) {
-           // model.addAttribute("passNotMatch", "Password do not match");
+            // model.addAttribute("passNotMatch", "Password do not match");
             return "edit";
         }
         clientRepository.save(client);
