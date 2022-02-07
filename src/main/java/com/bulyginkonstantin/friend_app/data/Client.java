@@ -26,17 +26,6 @@ public class Client {
     @Transient
     private String confirmPassword;
 
-//    @OneToMany
-//    private List<Friend> friends;
-
-//    public List<Friend> getFriends() {
-//        return friends;
-//    }
-//
-//    public void setFriends(List<Friend> friends) {
-//        this.friends = friends;
-//    }
-
     public Client(String login, String userName, String email, String password, String confirmPassword) {
         this.login = login;
         this.userName = userName;

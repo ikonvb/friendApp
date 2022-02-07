@@ -1,5 +1,6 @@
 package com.bulyginkonstantin.friend_app.data;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
@@ -7,7 +8,10 @@ import java.util.Objects;
 @Embeddable
 public class ClientFriendKey implements Serializable {
 
+    @Column(name = "client_id")
     private int clientId;
+
+    @Column(name = "friend_id")
     private int friendId;
 
     public ClientFriendKey(int clientId, int friendId) {
