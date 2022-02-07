@@ -2,23 +2,42 @@ package com.bulyginkonstantin.friend_app.data;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
-@Table(name = "friends_clients")
-public class Friend {
+@Table(name = "friends")
+public class Friend implements Serializable {
+    static final long serialVersionUID = 1L;
 
-    @Id
-    @Column(name = "fk_owner_id")
-    private int ownerId;
+    @EmbeddedId
+    private ClientFriendKey id;
 
-    @Column(name = "fk_client_id")
-    private int clientId;
+    public Friend(ClientFriendKey id) {
+        this.id = id;
+    }
 
-    @ManyToOne
-    @JoinColumn(name = "client_id")
-    private Client client;
+    public Friend() {
+    }
 
-    public Client getClient() {
-        return client;
+    public ClientFriendKey getId() {
+        return id;
+    }
+
+    public void setId(ClientFriendKey id) {
+        this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Friend friend = (Friend) o;
+        return Objects.equals(id, friend.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
