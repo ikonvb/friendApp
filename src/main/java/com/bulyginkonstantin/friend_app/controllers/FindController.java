@@ -28,16 +28,15 @@ public class FindController {
     @PostMapping("/result")
     public String showFindPerson(Client client, Model model) {
 
+        List<Client> clients;
         if (client.getUserName().isEmpty()) {
            // model.addAttribute("currentClientId", id);
-            List<Client> clients = clientService.findAll();
-            model.addAttribute("clientsList", clients);
-            return "clients";
+            clients = clientService.findAll();
         } else {
             //model.addAttribute("currentClientId", id);
-            List<Client> clients = clientService.findAllByUserName(client.getUserName());
-            model.addAttribute("clientsList", clients);
-            return "clients";
+            clients = clientService.findAllByUserName(client.getUserName());
         }
+        model.addAttribute("clientsList", clients);
+        return "clients";
     }
 }

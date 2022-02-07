@@ -104,7 +104,7 @@ public class Client {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Client client = (Client) o;
-        return id.equals(client.id) && login.equals(client.login) && userName.equals(client.userName) && email.equals(client.email) && password.equals(client.password) && confirmPassword.equals(client.confirmPassword);
+        return Objects.equals(id, client.id) && Objects.equals(login, client.login) && Objects.equals(userName, client.userName) && Objects.equals(email, client.email) && Objects.equals(password, client.password) && Objects.equals(confirmPassword, client.confirmPassword);
     }
 
     @Override
