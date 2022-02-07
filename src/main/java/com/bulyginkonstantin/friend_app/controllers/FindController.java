@@ -7,17 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 @Controller
-@RequestMapping("/findFriends")
+@RequestMapping("/find")
 public class FindController {
-
-    @Autowired
-    ClientRepository clientRepository;
 
     @Autowired
     ClientService clientService;
@@ -30,15 +28,16 @@ public class FindController {
     @PostMapping("/result")
     public String showFindPerson(Client client, Model model) {
 
-        if (client.getLogin().isEmpty()) {
+        if (client.getUserName().isEmpty()) {
+           // model.addAttribute("currentClientId", id);
             List<Client> clients = clientService.findAll();
             model.addAttribute("clientsList", clients);
             return "clients";
         } else {
-            Client c = clientService.findFirstByLogin(client.getLogin()).orElse(null);
-            model.addAttribute("client", c);
-            return "findfriend";
+            //model.addAttribute("currentClientId", id);
+            List<Client> clients = clientService.findAllByUserName(client.getUserName());
+            model.addAttribute("clientsList", clients);
+            return "clients";
         }
-
     }
 }

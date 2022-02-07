@@ -5,6 +5,8 @@
 <nav th:replace="layouts :: navbar"></nav>
 <body>
 <table class="table">
+
+    <input type="hidden" th:field="${currentClientId}">
     <thead>
     <tr>
         <th scope="col">Login</th>
@@ -19,7 +21,7 @@
     </tbody>
 </table>
 <div class="form-group m-3">
-    <a th:href="@{/profile}" class="btn btn-primary btn-block">Back</a>
+    <a th:href="@{'/profile/show/' + ${currentClientId}}" class="btn btn-primary btn-block">Back</a>
 </div>
 </body>
 </html>
