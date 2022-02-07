@@ -17,6 +17,7 @@ public class ProfileController {
     @Autowired
     ClientService clientService;
 
+    //show friends view for current user
     @GetMapping("/showFriends/{id}")
     public String showFriends(@PathVariable int id, Model model) {
         model.addAttribute("currentClientId", id);
@@ -25,20 +26,16 @@ public class ProfileController {
         return "friends";
     }
 
+    //show profile view for current user
     @GetMapping("/show/{id}")
     public String showProfile(@PathVariable int id, Client client, Model model) {
         model.addAttribute("currentClientId", id);
-
-        Client loggedClient = clientService.findByLoginAndPassword(client.getLogin(), client.getPassword()).orElse(null);
-        if (loggedClient != null) {
-            model.addAttribute("client", loggedClient);
-            return "profile";
-        } else {
-            return "login";
-        }
+        Client loggedClient = clientService.findById(id);
+        model.addAttribute("client", loggedClient);
+        return "profile";
     }
 
-    //shows find friend view
+    //show find friend view for current user
     @GetMapping("/findFriend/{id}")
     public String findPerson(@PathVariable int id, Model model) {
         model.addAttribute("currentClientId", id);

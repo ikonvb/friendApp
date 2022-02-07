@@ -7,12 +7,12 @@
     <div class="col-sm-4">
 
 
-        <form th:action="@{/find/result}" method="post" th:object="${client}">
+        <form th:action="@{'/find/result/' + ${currentClientId}}" method="post" th:object="${client}">
 
             <input type="hidden" th:field="${currentClientId}">
 
             <input th:field="*{userName}" type="text" class="form-control" placeholder="User name">
-            <button class="btn btn-outline-secondary" type="submit" id="button-addon1">Find friends</button>
+            <button class="btn btn-outline-secondary m-2" type="submit" id="button-addon1">Find friends</button>
 
         </form>
 

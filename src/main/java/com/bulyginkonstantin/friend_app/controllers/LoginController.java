@@ -17,7 +17,7 @@ public class LoginController {
     ClientService clientService;
 
     @GetMapping
-    public String login(Model model) {
+    public String logout(Model model) {
         Client client = new Client();
         model.addAttribute("client", client);
         return "login";

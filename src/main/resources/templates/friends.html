@@ -10,13 +10,18 @@
     <thead>
     <tr>
         <th scope="col">Login</th>
+        <th scope="col">User name</th>
         <th scope="col">Email</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="friend : ${friendsList}">
         <td th:text="${friend.login}"/>
+        <td th:text="${friend.userName}"/>
         <td th:text="${friend.email}"/>
+        <td>
+            <a th:href="@{'/client/remove/' + ${friend.id}}" class="btn btn-info btn-sm">remove</a>
+        </td>
     </tr>
     </tbody>
 </table>

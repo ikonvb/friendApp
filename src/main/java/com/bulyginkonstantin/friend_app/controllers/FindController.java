@@ -20,22 +20,24 @@ public class FindController {
     @Autowired
     ClientService clientService;
 
-    @GetMapping
-    public String findPerson() {
+    @GetMapping("/findFriend/{id}")
+    public String findPerson(@PathVariable int id, Model model) {
+        model.addAttribute("currentClientId", id);
+        Client client = new Client();
+        model.addAttribute("client", client);
         return "findfriend";
     }
 
-    @PostMapping("/result")
-    public String showFindPerson(Client client, Model model) {
+    @PostMapping("/result/{id}")
+    public String showFindPerson(@PathVariable int id, Client client, Model model) {
 
         List<Client> clients;
         if (client.getUserName().isEmpty()) {
-           // model.addAttribute("currentClientId", id);
             clients = clientService.findAll();
         } else {
-            //model.addAttribute("currentClientId", id);
             clients = clientService.findAllByUserName(client.getUserName());
         }
+        model.addAttribute("currentClientId", id);
         model.addAttribute("clientsList", clients);
         return "clients";
     }
