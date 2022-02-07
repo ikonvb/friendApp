@@ -14,29 +14,29 @@
 
         <!--Filed for login -->
         <div class="form-group m-3">
+            <label>Login</label>
             <input type="text" th:field="*{login}" class="form-control"/>
         </div>
-        <!--Filed for login -->
+        <!--Filed for userName -->
         <div class="form-group m-3">
+            <label>User name</label>
             <input type="text" th:field="*{userName}" class="form-control"/>
         </div>
 
-        <div class="form-group m-3">
-            <input type="text" th:field="*{userName}" placeholder="user name" class="form-control"/>
-        </div>
         <!--Filed for email -->
         <div class="form-group m-3">
-            <input type="text" th:field="*{email}" class="form-control" />
+            <label>Email</label>
+            <input type="text" th:field="*{email}" class="form-control"/>
         </div>
 
         <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
 
         <div class="form-group m-3">
-            <a th:href="@{'/profile/delete/' + ${client.id}}" class="btn btn-primary btn-block"
+            <a th:href="@{'/profile/delete/' + ${client.id}}" class="btn btn-primary btn-block m-2"
                onclick="if (!(confirm('Are you sure?'))) return false">Delete profile</a>
-            <a th:href="@{'/profile/findFriend/'+ ${client.id}}" class="btn btn-primary btn-block">Find friends</a>
-            <a th:href="@{'/profile/showFriends/' + ${client.id}}" class="btn btn-primary btn-block">Show friends</a>
-            <a th:href="@{/logout}" class="btn btn-primary btn-block">Log out</a>
+            <a th:href="@{'/profile/findFriend/'+ ${client.id}}" class="btn btn-primary btn-block m-2">Find friends</a>
+            <a th:href="@{'/profile/showFriends/' + ${client.id}}" class="btn btn-primary btn-block m-2">Show friends</a>
+            <a th:href="@{/logout}" class="btn btn-primary btn-block m-2">Log out</a>
         </div>
     </form>
 </div>
