@@ -7,8 +7,6 @@ import java.util.Objects;
 @Table(name = "clients")
 public class Client {
 
-    public static final long serialVersionUID = 1L;
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -38,7 +36,6 @@ public class Client {
 //    public void setFriends(List<Friend> friends) {
 //        this.friends = friends;
 //    }
-
 
     public Client(String login, String userName, String email, String password, String confirmPassword) {
         this.login = login;
