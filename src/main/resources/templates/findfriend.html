@@ -6,21 +6,21 @@
     <h1>Search friend</h1>
     <div class="col-sm-4">
 
-        <form th:action="@{/findFriends/result}" method="post" th:object="${client}">
 
+        <form th:action="@{/find/result}" method="post" th:object="${client}">
+
+            <input type="hidden" th:field="${currentClientId}">
 
             <input th:field="*{userName}" type="text" class="form-control" placeholder="User name">
-            <button class="btn btn-outline-secondary mt-5" type="submit" id="button-addon1">Find friends</button>
+            <button class="btn btn-outline-secondary" type="submit" id="button-addon1">Find friends</button>
 
         </form>
 
         <div class="form-group m-3">
-            <a th:href="@{/profile}" class="btn btn-primary btn-block">Back</a>
+            <a th:href="@{'/profile/show/' + ${currentClientId}}" class="btn btn-primary btn-block">Back</a>
         </div>
     </div>
 
-
-<!--    <input type="hidden" th:field="${currentClientId}">-->
 </div>
 
 </body>

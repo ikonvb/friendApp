@@ -37,15 +37,6 @@ public class Client {
 //        this.friends = friends;
 //    }
 
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
     public Client(String login, String userName, String email, String password, String confirmPassword) {
         this.login = login;
         this.userName = userName;
@@ -55,6 +46,14 @@ public class Client {
     }
 
     public Client() {
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public Integer getId() {

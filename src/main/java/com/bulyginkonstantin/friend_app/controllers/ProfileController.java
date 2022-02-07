@@ -18,17 +18,18 @@ public class ProfileController {
     ClientService clientService;
 
     @GetMapping("/showFriends/{id}")
-    public String showFriends(Model model) {
+    public String showFriends(@PathVariable int id, Model model) {
+        model.addAttribute("currentClientId", id);
         List<Client> friends = clientService.findAll();
         model.addAttribute("friendsList", friends);
         return "friends";
     }
 
-    @GetMapping
-    public String showProfile(Client client, Model model) {
+    @GetMapping("/show/{id}")
+    public String showProfile(@PathVariable int id, Client client, Model model) {
+        model.addAttribute("currentClientId", id);
 
         Client loggedClient = clientService.findByLoginAndPassword(client.getLogin(), client.getPassword()).orElse(null);
-
         if (loggedClient != null) {
             model.addAttribute("client", loggedClient);
             return "profile";
@@ -37,6 +38,7 @@ public class ProfileController {
         }
     }
 
+    //shows find friend view
     @GetMapping("/findFriend/{id}")
     public String findPerson(@PathVariable int id, Model model) {
         model.addAttribute("currentClientId", id);
