@@ -9,19 +9,19 @@
 
     <form th:action="@{/login}" method="post" class="form-signin" th:object="${client}">
 
-        <div class="form-label-group m-3">
-            <label>Login</label>
-            <input type="text" th:field="*{login}" name="login" id="login" class="form-control fadeIn second"/>
+        <!--Filed for login -->
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text" >Login</span>
+            <input type="text" th:field="*{login}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
         </div>
 
         <!--Filed for password -->
-        <div class="form-label-group m-3">
-            <label>Password</label>
-            <input type="password" th:field="*{password}" name="password" id="password" class="form-control fadeIn second"/>
+        <div class="input-group input-group-sm mb-3">
+            <span class="input-group-text">Password</span>
+            <input type="password" th:field="*{password}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
         </div>
-
         <div class="form-label-group m-3">
-            <button type="submit" class="btn btn-primary btn-block fadeIn fourth">Log in</button>
+            <button type="submit" class="btn btn-secondary btn-block fadeIn fourth">Log in</button>
         </div>
 
         <p class="text-center">
