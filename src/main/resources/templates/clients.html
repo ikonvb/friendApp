@@ -6,8 +6,8 @@
 
 <body>
 <table class="table">
-  <h2>Found peoples</h2>
-        <input type="hidden" th:field="${currentClientId}">
+    <h2>Found peoples</h2>
+    <input type="hidden" th:field="${currentClientId}">
     <thead>
     <tr>
         <th scope="col">Login</th>
@@ -17,12 +17,14 @@
     </tr>
     </thead>
     <tbody>
+
     <tr th:each="client : ${clientsList}" th:if="${client.id != currentClientId}">
         <td th:text="${client.login}"/>
         <td th:text="${client.userName}"/>
         <td th:text="${client.email}"/>
         <td>
-            <a th:href="@{'/client/addToFriend/' + ${currentClientId} + '/' + ${client.id}}" class="btn btn-info btn-sm">add to friend</a>
+            <a th:href="@{'/client/addToFriend/' + ${currentClientId} + '/' + ${client.id}}"
+               class="btn btn-info btn-sm">add to friend</a>
         </td>
     </tr>
     </tbody>
