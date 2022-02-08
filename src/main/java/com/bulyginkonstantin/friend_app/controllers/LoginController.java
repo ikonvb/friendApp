@@ -25,9 +25,7 @@ public class LoginController {
 
     @PostMapping
     public String login(Client client, Model model) {
-
         Client loggedClient = clientService.loginClient(client.getLogin(), client.getPassword());
-
         if (loggedClient != null) {
             model.addAttribute("client", loggedClient);
             return "profile";

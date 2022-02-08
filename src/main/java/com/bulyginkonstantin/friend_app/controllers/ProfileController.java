@@ -1,10 +1,9 @@
 package com.bulyginkonstantin.friend_app.controllers;
 
 import com.bulyginkonstantin.friend_app.data.Client;
-import com.bulyginkonstantin.friend_app.data.ClientFriendKey;
-import com.bulyginkonstantin.friend_app.data.Friend;
 import com.bulyginkonstantin.friend_app.repository.FriendsRepository;
 import com.bulyginkonstantin.friend_app.service.ClientService;
+import com.bulyginkonstantin.friend_app.service.FriendService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,45 +13,44 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/profile")
 public class ProfileController {
 
     @Autowired
-    FriendsRepository friendsRepository;
+    FriendService friendService;
+
     @Autowired
     ClientService clientService;
 
     //show friends view for current user
-    @GetMapping("/showFriends/{id}")
-    public String showFriends(@PathVariable int id, Model model) {
-        model.addAttribute("currentClientId", id);
-
-        List<Integer> friendsId = friendsRepository.findFriendIdById(id);
+    @GetMapping("/showFriends/{currentId}")
+    public String showFriends(@PathVariable int currentId, Model model) {
+        List<Integer> friendsId = friendService.findFriendIdById(currentId);
         List<Client> friends = new ArrayList<>();
-        for(Integer i: friendsId) {
+        for (Integer i : friendsId) {
             friends.add(clientService.findById(i));
         }
         model.addAttribute("friendsList", friends);
+        model.addAttribute("currentClientId", currentId);
         return "friends";
     }
 
     //show profile view for current user
-    @GetMapping("/show/{id}")
-    public String showProfile(@PathVariable int id, Client client, Model model) {
-        model.addAttribute("currentClientId", id);
-        Client loggedClient = clientService.findById(id);
+    @GetMapping("/show/{currentId}")
+    public String showProfile(@PathVariable int currentId, Model model) {
+        Client loggedClient = clientService.findById(currentId);
+        model.addAttribute("currentClientId", currentId);
         model.addAttribute("client", loggedClient);
         return "profile";
     }
 
     //show find friend view for current user
-    @GetMapping("/findFriend/{id}")
-    public String findPerson(@PathVariable int id, Model model) {
-        model.addAttribute("currentClientId", id);
+    @GetMapping("/findFriend/{currentId}")
+    public String findPerson(@PathVariable int currentId, Model model) {
         Client client = new Client();
+        model.addAttribute("currentClientId", currentId);
         model.addAttribute("client", client);
         return "findfriend";
     }

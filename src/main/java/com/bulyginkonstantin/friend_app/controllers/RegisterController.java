@@ -28,7 +28,12 @@ public class RegisterController {
     //save to DB from register form
     @PostMapping("/save")
     public String saveAccount(@ModelAttribute Client client) {
-        clientService.registerClient(client.getLogin(), client.getUserName(), client.getEmail(), client.getPassword(), client.getConfirmPassword());
+        clientService.registerClient(
+                client.getLogin(),
+                client.getUserName(),
+                client.getEmail(),
+                client.getPassword(),
+                client.getConfirmPassword());
         return "login";
     }
 }

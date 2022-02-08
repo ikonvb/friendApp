@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ClientService {
@@ -15,7 +14,6 @@ public class ClientService {
     ClientRepository clientRepository;
 
     public Client registerClient(String login, String userName, String email, String password, String confirmPassword) {
-
         if (login == null || userName == null || password == null || !password.equalsIgnoreCase(confirmPassword)) {
             return null;
         } else {
@@ -36,16 +34,8 @@ public class ClientService {
         return clientRepository.findAll();
     }
 
-    public Optional<Client> findByLoginAndPassword(String login, String password) {
-        return clientRepository.findByLoginAndPassword(login, password);
-    }
-
     public List<Client> findAllByUserName(String userName) {
         return clientRepository.findAllByUserName(userName);
-    }
-
-    public Optional<Client> findFirstByLogin(String login) {
-        return clientRepository.findFirstByLogin(login);
     }
 
     public Client findById(int id) {

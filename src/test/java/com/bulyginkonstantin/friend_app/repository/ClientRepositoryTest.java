@@ -20,6 +20,4 @@ class ClientRepositoryTest {
         long size = clientRepository.count();
         assertThat(size).isGreaterThan(0);
     }
-
-
 }
