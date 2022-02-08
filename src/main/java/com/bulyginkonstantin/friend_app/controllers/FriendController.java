@@ -3,7 +3,6 @@ package com.bulyginkonstantin.friend_app.controllers;
 import com.bulyginkonstantin.friend_app.data.Client;
 import com.bulyginkonstantin.friend_app.data.ClientFriendKey;
 import com.bulyginkonstantin.friend_app.data.Friend;
-import com.bulyginkonstantin.friend_app.repository.FriendsRepository;
 import com.bulyginkonstantin.friend_app.service.ClientService;
 import com.bulyginkonstantin.friend_app.service.FriendService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,8 +46,24 @@ public class FriendController {
         return "clients";
     }
 
-    @GetMapping("/remove/{id}")
-    public String remove(@RequestParam("id") int id) {
+    @GetMapping("/remove/{currentId}/{id}")
+    public String remove(@PathVariable int currentId, @PathVariable int id, Model model) {
+
+        //delete friend for current client
+        ClientFriendKey key = new ClientFriendKey(currentId, id);
+        Friend friend = new Friend(key);
+        friendService.delete(friend);
+
+
+        List<Integer> friendsId = friendService.findFriendIdById(currentId);
+
+        List<Client> friends = new ArrayList<>();
+
+        for (Integer i : friendsId) {
+            friends.add(clientService.findById(i));
+        }
+        model.addAttribute("currentClientId", currentId);
+        model.addAttribute("friendsList", friends);
         return "friends";
     }
 }

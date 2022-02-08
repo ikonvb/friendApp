@@ -20,4 +20,8 @@ public class FriendService {
     public void save(Friend friend) {
         friendsRepository.save(friend);
     }
+
+    public void delete(Friend friend) {
+        friendsRepository.delete(friend);
+    }
 }
