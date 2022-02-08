@@ -1,7 +1,9 @@
 package com.bulyginkonstantin.friend_app.data;
 
 
-import javax.persistence.*;
+import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Objects;
 

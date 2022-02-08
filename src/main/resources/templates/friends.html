@@ -5,6 +5,7 @@
 
 <body>
 <table class="table">
+    <h3>Not implemented yet</h3>
 
     <input type="hidden" th:field="${currentClientId}">
     <thead>
@@ -15,7 +16,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="friend : ${friendsList}">
+    <tr th:each="friend : ${friendsList}" th:if="${friendsList != null}">
         <td th:text="${friend.login}"/>
         <td th:text="${friend.userName}"/>
         <td th:text="${friend.email}"/>
@@ -23,6 +24,8 @@
             <a th:href="@{'/client/remove/' + ${friend.id}}" class="btn btn-info btn-sm">remove</a>
         </td>
     </tr>
+
+
     </tbody>
 </table>
 <div class="form-group m-3">
