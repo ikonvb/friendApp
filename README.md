@@ -1,4 +1,26 @@
+**Название**
 # Find friend application
+**Описание**
+
+Приложение позволяет регистрировать нового пользователя,искать уже зарегитсрированных ползователей и добавлять их в друзья.
+
+**Установка**
+
+1. Скачать и установить JDK 11 версии или выше.    
+[ссылка для скачивания](https://www.oracle.com/java/technologies/javase/jdk11-archive-downloads.html)
+
+2. Скачать и устанвоить Maven.    
+[ccылка для скачивания](https://maven.apache.org/download.cgi)
+
+3. Скачать и установить одну из IDE.    
+[Скачать IntelliJ IDEA](https://www.jetbrains.com/ru-ru/idea/download/#section=windows)    
+[Скачать Spring Tools 4 for Eclipse](https://spring.io/tools)
+
+
+4. Создать новый проект в IntelliJ IDEA 
+![2022-02-09_22-53-10](https://user-images.githubusercontent.com/42876203/153279837-9073b795-9eb7-477a-a8dc-a97ecf2da5a4.jpg)
+
+
 ___
 
 **bold**
