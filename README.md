@@ -17,9 +17,8 @@
 [Скачать Spring Tools 4 for Eclipse](https://spring.io/tools)
 
 
-4. Создать новый проект в IntelliJ IDEA     
-![2022-02-09_22-53-10](https://user-images.githubusercontent.com/42876203/153279837-9073b795-9eb7-477a-a8dc-a97ecf2da5a4.jpg)
-
+4. Создать новый проект в IntelliJ IDEA   
+![Screenshot (2)](https://user-images.githubusercontent.com/42876203/153280341-49cdd708-efc6-4eb6-8011-83ee7188d037.png)
 
 ___
 
