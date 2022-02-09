@@ -18,7 +18,7 @@
 
 
 4. Создать новый проект в IntelliJ IDEA   
-![Screenshot (2)](https://user-images.githubusercontent.com/42876203/153280341-49cdd708-efc6-4eb6-8011-83ee7188d037.png)
+![Screenshot (3)](https://user-images.githubusercontent.com/42876203/153280441-d5c490b9-a7e7-4ae1-9db7-6e046b810404.png)
 
 ___
 
