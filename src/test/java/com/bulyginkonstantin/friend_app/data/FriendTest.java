@@ -2,9 +2,11 @@ package com.bulyginkonstantin.friend_app.data;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@SpringBootTest
 class FriendTest {
 
     Friend friend;
@@ -17,7 +19,7 @@ class FriendTest {
     }
 
     @Test
-    void getId() {
+    void testGetId() {
         clientFriendKey.setClientId(1);
         clientFriendKey.setFriendId(2);
         friend.setId(clientFriendKey);
@@ -25,7 +27,7 @@ class FriendTest {
     }
 
     @Test
-    void setId() {
+    void testSetId() {
         clientFriendKey.setClientId(1);
         clientFriendKey.setFriendId(2);
         friend.setId(clientFriendKey);

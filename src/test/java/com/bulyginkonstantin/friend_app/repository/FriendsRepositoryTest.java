@@ -1,6 +1,7 @@
 package com.bulyginkonstantin.friend_app.repository;
 
-import com.bulyginkonstantin.friend_app.data.Client;
+import com.bulyginkonstantin.friend_app.data.ClientFriendKey;
+import com.bulyginkonstantin.friend_app.data.Friend;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
@@ -16,25 +17,21 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 @RunWith(SpringRunner.class)
 @SqlGroup({@Sql(executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD, scripts = {"classpath:schema.sql", "classpath:data.sql"}),
         @Sql(executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD, scripts = "classpath:drop.sql")})
-class ClientRepositoryTest {
+class FriendsRepositoryTest {
 
     @Autowired
-    ClientRepository clientRepository;
+    FriendsRepository friendsRepository;
 
     @BeforeEach
     void setUp() {
     }
 
     @Test
-    public void testClientRepositorySize() {
-        Client client = new Client();
-        client.setId(1);
-        client.setLogin("login");
-        client.setEmail("test@test.com");
-        client.setPassword("123");
-        client.setUserName("tester");
-        clientRepository.save(client);
-        long size = clientRepository.count();
+    public void testFriendsRepository() {
+        ClientFriendKey clientFriendKey = new ClientFriendKey(1, 1);
+        Friend friend = new Friend(clientFriendKey);
+        friendsRepository.save(friend);
+        long size = friendsRepository.count();
         assertThat(size).isGreaterThan(0);
     }
 
@@ -43,14 +40,6 @@ class ClientRepositoryTest {
     }
 
     @Test
-    void testFindByLoginAndPassword() {
-    }
-
-    @Test
-    void testFindAllByUserName() {
-    }
-
-    @Test
-    void testFindById() {
+    void testFindFriendIdById() {
     }
 }

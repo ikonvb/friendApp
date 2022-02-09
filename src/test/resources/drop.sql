@@ -1,0 +1,2 @@
+DROP TABLE clients IF EXISTS;
+DROP TABLE friends IF EXISTS;

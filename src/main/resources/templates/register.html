@@ -10,39 +10,43 @@
 
         <h3 class="text-center">Registration Form</h3>
 
-        <!--Filed for login -->
-        <div class="input-group input-group-sm mb-3">
+        <!--Field for login -->
+        <div class="form-group m-1">
             <span class="input-group-text" >Login</span>
             <input type="text" th:field="*{login}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            <span class="text-danger" th:if="${#fields.hasErrors('login')}" th:errors="${client.login}"></span>
         </div>
 
-        <!--Filed for name -->
-        <div class="input-group input-group-sm mb-3">
+        <!--Field for name -->
+        <div class="form-group m-1">
             <span class="input-group-text">Name</span>
             <input type="text" th:field="*{userName}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            <span class="text-danger" th:if="${#fields.hasErrors('userName')}" th:errors="${client.userName}"></span>
         </div>
 
-        <!--Filed for email -->
-        <div class="input-group input-group-sm mb-3">
+        <!--Field for email -->
+        <div class="form-group m-1">
             <span class="input-group-text">Email</span>
             <input type="text" th:field="*{email}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            <span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="${client.email}"></span>
         </div>
 
-        <!--Filed for password -->
-        <div class="input-group input-group-sm mb-3">
+        <!--Field for password -->
+        <div class="form-group m-1">
             <span class="input-group-text">Password</span>
             <input type="password" th:field="*{password}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            <span class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="${client.password}"></span>
         </div>
 
-        <!--Filed for confirmPassword -->
-        <div class="input-group input-group-sm mb-3">
+        <!--Field for confirmPassword -->
+        <div class="form-group m-1">
             <span class="input-group-text">Confirm password</span>
             <input type="password" th:field="*{confirmPassword}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
         </div>
 
         <input type="hidden" name="_csrf" th:value="${_csrf.token}"/>
 
-        <div class="form-group m-3">
+        <div class="form-group m-1">
             <button type="submit" class="btn btn-secondary btn-block">Register User</button>
         </div>
         <p class="text-center">

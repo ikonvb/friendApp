@@ -9,17 +9,23 @@
 
     <form th:action="@{/login}" method="post" class="form-signin" th:object="${client}">
 
-        <!--Filed for login -->
-        <div class="input-group input-group-sm mb-3">
-            <span class="input-group-text" >Login</span>
-            <input type="text" th:field="*{login}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+
+        <!--Field for login -->
+        <div class="form-group mb-3">
+            <span class="input-group-text">Login</span>
+            <input type="text" th:field="*{login}" class="form-control">
+            <span class="text-danger" th:if="${errorLogin}" th:text="${errorLogin}"></span>
         </div>
 
-        <!--Filed for password -->
-        <div class="input-group input-group-sm mb-3">
+
+        <!--Field for password -->
+        <div class="form-group mb-3">
             <span class="input-group-text">Password</span>
-            <input type="password" th:field="*{password}" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+            <input type="password" th:field="*{password}" class="form-control">
+            <span class="text-danger" th:if="${errorPassword}" th:text="${errorPassword}"></span>
         </div>
+
+
         <div class="form-label-group m-3">
             <button type="submit" class="btn btn-secondary btn-block fadeIn fourth">Log in</button>
         </div>

@@ -1,6 +1,9 @@
 package com.bulyginkonstantin.friend_app.data;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
@@ -11,15 +14,20 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotBlank(message = "Login is mandatory")
     @Column(name = "login")
     private String login;
 
+    @NotBlank(message = "User name is mandatory")
     @Column(name = "user_name")
     private String userName;
 
+    @NotBlank(message = "Email is mandatory")
+    @Email
     @Column(name = "email")
     private String email;
 
+    @NotBlank(message = "Password is mandatory")
     @Column(name = "password")
     private String password;
 

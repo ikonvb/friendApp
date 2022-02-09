@@ -25,11 +25,22 @@ public class LoginController {
 
     @PostMapping
     public String login(Client client, Model model) {
-        Client loggedClient = clientService.loginClient(client.getLogin(), client.getPassword());
+        String login = client.getLogin();
+        String password = client.getPassword();
+        if (login.isEmpty()) {
+            model.addAttribute("errorLogin", "Please enter login");
+            return "login";
+        }
+        if (password.isEmpty()) {
+            model.addAttribute("errorPassword", "Please enter password");
+            return "login";
+        }
+        Client loggedClient = clientService.loginClient(login, password);
         if (loggedClient != null) {
             model.addAttribute("client", loggedClient);
             return "profile";
         } else {
+            model.addAttribute("error", "You don`t have an account");
             return "login";
         }
     }
