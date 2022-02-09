@@ -1,4 +1,4 @@
-# Find frien application
+# Find friend application
 ___
 
 **bold**
