@@ -20,7 +20,8 @@
 4. Создать новый проект в IntelliJ IDEA   
 ![Screenshot (3)](https://user-images.githubusercontent.com/42876203/153280441-d5c490b9-a7e7-4ae1-9db7-6e046b810404.png)
 
-[Установить ссылку на этот проект](https://github.com/kostyaFrom/friendApp.git)
+Установить ссылку этого проекта
+[Ссылка](https://github.com/kostyaFrom/friendApp.git)
 
 
 ___
