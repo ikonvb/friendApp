@@ -37,10 +37,7 @@
 ![idea](https://user-images.githubusercontent.com/42876203/153388641-51761ef8-e1a3-4e55-aad2-bd6d9585a29f.png)
 ![idea](https://user-images.githubusercontent.com/42876203/153389766-2e51dd2f-4932-44df-8d19-7a3f3b45a056.png)
 
-
-
-
-
+9. Пробовать запускать.
 
 ### Login page
 ![2022-02-09_22-11-58](https://user-images.githubusercontent.com/42876203/153273270-fa9cc245-31f4-444c-a172-cd05e8795004.jpg)
