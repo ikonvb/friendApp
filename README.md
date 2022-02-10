@@ -12,9 +12,8 @@
 2. Скачать и устанвоить Maven.    
 [ccылка для скачивания](https://maven.apache.org/download.cgi)
 
-3. Скачать и установить одну из IDE.    
-[Скачать IntelliJ IDEA](https://www.jetbrains.com/ru-ru/idea/download/#section=windows)    
-[Скачать Spring Tools 4 for Eclipse](https://spring.io/tools)
+3. Скачать и установить IDE.    
+[Скачать IntelliJ IDEA](https://www.jetbrains.com/ru-ru/idea/download/#section=windows)
 
 
 4. Создать новый проект в IntelliJ IDEA   
