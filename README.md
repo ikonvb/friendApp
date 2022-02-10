@@ -1,4 +1,3 @@
-**Название**
 # Find friend application
 
 [Ссылка на рабочую версию](https://clients-firends-app.herokuapp.com/)
