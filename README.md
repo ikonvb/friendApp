@@ -26,20 +26,13 @@
     sql script для clients
     sql script для friends
 
-4. Создать новый проект в IntelliJ IDEA используя git-hub ссылку этого проекта 
+7. Создать новый проект в IntelliJ IDEA используя git-hub ссылку этого проекта 
 ![idea](https://user-images.githubusercontent.com/42876203/153384662-85f4d7a5-28d3-4762-952b-aa7a3b022d77.png)
 
 Ссылка этого проекта
 [Ссылка](https://github.com/kostyaFrom/friendApp.git)
 
-
-___
-
-**bold**
-*italic*
-***text***
-~~text~~
-
+8. Найти файл application.properties и отредактировать его используя свои логин и пароль от базы данных.
 
 
 ### Login page
