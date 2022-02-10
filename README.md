@@ -35,7 +35,8 @@
 8. Найти файл application.properties и отредактировать его используя свои логин и пароль от базы данных.
 
 ![idea](https://user-images.githubusercontent.com/42876203/153388641-51761ef8-e1a3-4e55-aad2-bd6d9585a29f.png)
-![idea](https://user-images.githubusercontent.com/42876203/153389457-0886b00b-89bb-47f8-8d96-ccbdf963b028.png)
+![idea](https://user-images.githubusercontent.com/42876203/153389766-2e51dd2f-4932-44df-8d19-7a3f3b45a056.png)
+
 
 
 
