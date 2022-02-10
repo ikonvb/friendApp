@@ -1,6 +1,6 @@
 # Find friend application
 
-[Ссылка на рабочую версию](https://clients-firends-app.herokuapp.com/)
+[Рабочая версия на Heroku](https://clients-firends-app.herokuapp.com/)    
 Так как приложение развернуто на Heroku без подписки, следует подождать пока оно запуститься.
 Ожидание может составить от 10 секунд и более.
 
