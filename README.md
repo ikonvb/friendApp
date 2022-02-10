@@ -1,7 +1,8 @@
 **Название**
 # Find friend application
 
-[Friend App deployed on Heroku](https://clients-firends-app.herokuapp.com/)
+[Ссылка на рабочую версию](https://clients-firends-app.herokuapp.com/)
+
 **Описание**
 
 Приложение позволяет регистрировать нового пользователя,искать уже зарегитсрированных ползователей и добавлять их в друзья.
