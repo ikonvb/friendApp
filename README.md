@@ -46,4 +46,4 @@
 ![register](https://user-images.githubusercontent.com/42876203/153273577-afda30ab-0bb3-4ac9-b60e-5f318907f25c.jpg)
 
 ### Profile page
-![profile](https://user-images.githubusercontent.com/42876203/153273577-afda30ab-0bb3-4ac9-b60e-5f318907f25c.jpg)
+![profile](https://user-images.githubusercontent.com/42876203/153391973-d7a9b73f-2cfe-4e73-bc41-27cbb44b6992.png)
