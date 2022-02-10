@@ -55,6 +55,8 @@
 
 9. Пробовать запускать.
 
+# Screenshots
+
 ### Login page
 ![login](https://user-images.githubusercontent.com/42876203/153273270-fa9cc245-31f4-444c-a172-cd05e8795004.jpg)
 
