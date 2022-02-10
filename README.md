@@ -16,13 +16,20 @@
 [ccылка для скачивания](https://maven.apache.org/download.cgi)
 
 3. Скачать и установить IDE.    
-[Скачать IntelliJ IDEA](https://www.jetbrains.com/ru-ru/idea/download/#section=windows)
+[IntelliJ IDEA](https://www.jetbrains.com/ru-ru/idea/download/#section=windows)
 
+4. Скачать и установить PostgreSQL и PgAdmin.    
+[PostgreSQL](https://www.postgresql.org/)
+
+5. Создать базу данных с именем friends   
+6. Создать две таблицы: clients и friends
+    sql script для clients
+    sql script для friends
 
 4. Создать новый проект в IntelliJ IDEA   
 ![idea](https://user-images.githubusercontent.com/42876203/153384662-85f4d7a5-28d3-4762-952b-aa7a3b022d77.png)
 
-Установить ссылку этого проекта
+Ссылка этого проекта
 [Ссылка](https://github.com/kostyaFrom/friendApp.git)
 
 
