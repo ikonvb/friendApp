@@ -25,6 +25,7 @@ public class FindController {
     @Autowired
     ClientService clientService;
 
+    //show view to find friend
     @GetMapping("/findFriend/{currentId}")
     public String findPerson(@PathVariable int currentId, Model model) {
         Client client = new Client();
@@ -33,6 +34,7 @@ public class FindController {
         return "findfriend";
     }
 
+    //show results of searching
     @PostMapping("/result/{currentId}")
     public String showFindPerson(@PathVariable int currentId, Client client, Model model) {
         List<Integer> friendsId = friendService.findFriendIdById(currentId);

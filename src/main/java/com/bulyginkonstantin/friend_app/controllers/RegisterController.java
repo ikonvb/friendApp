@@ -34,6 +34,7 @@ public class RegisterController {
         if (errors.hasErrors()) {
             return "register";
         }
+
         clientService.registerClient(
                 client.getLogin(),
                 client.getUserName(),

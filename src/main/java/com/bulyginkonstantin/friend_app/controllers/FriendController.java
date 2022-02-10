@@ -25,6 +25,7 @@ public class FriendController {
     @Autowired
     FriendService friendService;
 
+    //save friend
     @GetMapping("/addToFriend/{currentId}/{id}")
     public String addFriend(@PathVariable int currentId, @PathVariable int id, Model model) {
         //save to database friend entity
@@ -34,18 +35,17 @@ public class FriendController {
         friendService.save(friend);
 
         //retrieve all friends for current client
-        List<Integer> friendsId = friendService.findFriendIdById(currentId);
-        List<Client> friends = new ArrayList<>();
-        for (Integer i : friendsId) {
-            friends.add(clientService.findById(i));
-        }
+        List<Client> friends = getClients(currentId);
+        //retrieve all clients for current client
         List<Client> clients = clientService.findAll();
+        //delete all clients who are already friends
         clients.removeAll(friends);
         model.addAttribute("currentClientId", currentId);
         model.addAttribute("clientsList", clients);
         return "clients";
     }
 
+    //delete friend
     @GetMapping("/remove/{currentId}/{id}")
     public String remove(@PathVariable int currentId, @PathVariable int id, Model model) {
 
@@ -54,16 +54,18 @@ public class FriendController {
         Friend friend = new Friend(key);
         friendService.delete(friend);
 
-
-        List<Integer> friendsId = friendService.findFriendIdById(currentId);
-
-        List<Client> friends = new ArrayList<>();
-
-        for (Integer i : friendsId) {
-            friends.add(clientService.findById(i));
-        }
+        List<Client> friends = getClients(currentId);
         model.addAttribute("currentClientId", currentId);
         model.addAttribute("friendsList", friends);
         return "friends";
+    }
+
+    private List<Client> getClients(int currentId) {
+        List<Integer> friendsId = friendService.findFriendIdById(currentId);
+        List<Client> friends = new ArrayList<>();
+        for (Integer i : friendsId) {
+            friends.add(clientService.findById(i));
+        }
+        return friends;
     }
 }
