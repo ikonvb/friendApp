@@ -1,4 +1,4 @@
-# Find friend application
+# Find friend app
 
 [Рабочая версия на Heroku](https://clients-firends-app.herokuapp.com/)    
 Так как приложение развернуто на Heroku без подписки, следует подождать пока оно запуститься.
