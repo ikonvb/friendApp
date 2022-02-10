@@ -27,12 +27,12 @@
     sql script для clients    
     ~~~
     CREATE TABLE IF NOT EXISTS clients (
-id BIGINT NOT NULL PRIMARY KEY,
-login VARCHAR(100) NOT NULL,
-user_name VARCHAR(100) NOT NULL,
-email VARCHAR(100) NOT NULL,
-password VARCHAR(255) NOT NULL
-);
+      id BIGINT NOT NULL PRIMARY KEY,
+      login VARCHAR(100) NOT NULL,
+      user_name VARCHAR(100) NOT NULL,
+      email VARCHAR(100) NOT NULL,
+      password VARCHAR(255) NOT NULL
+    );
     ~~~
     sql script для friends
 
