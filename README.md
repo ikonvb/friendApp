@@ -24,7 +24,7 @@
 
 5. Создать базу данных с именем friends   
 6. Создать две таблицы: clients и friends    
-    sql script для clients    
+    sql script для *clients*    
     ~~~
     CREATE TABLE IF NOT EXISTS clients (
       id BIGINT NOT NULL PRIMARY KEY,
@@ -34,7 +34,13 @@
       password VARCHAR(255) NOT NULL
     );
     ~~~
-    sql script для friends
+    sql script для *friends*    
+    ~~~
+    CREATE TABLE IF NOT EXISTS friends (
+      client_id BIGINT NOT NULL,
+      friend_id BIGINT NOT NULL
+    );    
+    ~~~
 
 7. Создать новый проект в IntelliJ IDEA используя git-hub ссылку этого проекта 
 ![idea](https://user-images.githubusercontent.com/42876203/153384662-85f4d7a5-28d3-4762-952b-aa7a3b022d77.png)
