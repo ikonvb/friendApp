@@ -37,20 +37,4 @@ class ClientRepositoryTest {
         long size = clientRepository.count();
         assertThat(size).isGreaterThan(0);
     }
-
-    @Test
-    void testFindAll() {
-    }
-
-    @Test
-    void testFindByLoginAndPassword() {
-    }
-
-    @Test
-    void testFindAllByUserName() {
-    }
-
-    @Test
-    void testFindById() {
-    }
 }

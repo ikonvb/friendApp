@@ -34,12 +34,4 @@ class FriendsRepositoryTest {
         long size = friendsRepository.count();
         assertThat(size).isGreaterThan(0);
     }
-
-    @Test
-    void testFindAll() {
-    }
-
-    @Test
-    void testFindFriendIdById() {
-    }
 }
