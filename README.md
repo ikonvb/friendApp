@@ -23,8 +23,17 @@
 [PostgreSQL](https://www.postgresql.org/)
 
 5. Создать базу данных с именем friends   
-6. Создать две таблицы: clients и friends
-    sql script для clients
+6. Создать две таблицы: clients и friends    
+    sql script для clients    
+    ~~~
+    CREATE TABLE IF NOT EXISTS clients (
+id BIGINT NOT NULL PRIMARY KEY,
+login VARCHAR(100) NOT NULL,
+user_name VARCHAR(100) NOT NULL,
+email VARCHAR(100) NOT NULL,
+password VARCHAR(255) NOT NULL
+);
+    ~~~
     sql script для friends
 
 7. Создать новый проект в IntelliJ IDEA используя git-hub ссылку этого проекта 
