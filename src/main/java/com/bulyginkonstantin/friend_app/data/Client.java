@@ -1,5 +1,7 @@
 package com.bulyginkonstantin.friend_app.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -28,9 +30,11 @@ public class Client {
 
     @NotBlank(message = "Password is mandatory")
     @Column(name = "password")
+    //@JsonIgnore
     private String password;
 
     @Transient
+    //@JsonIgnore
     private String confirmPassword;
 
     public Client(String login, String userName, String email, String password, String confirmPassword) {

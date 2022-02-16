@@ -14,5 +14,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .exceptionHandling()
                 .accessDeniedPage("/");
+        http.csrf().disable();
     }
 }

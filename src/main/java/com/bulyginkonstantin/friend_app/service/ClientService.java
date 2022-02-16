@@ -26,6 +26,10 @@ public class ClientService {
         }
     }
 
+    public Client saveClient(Client client) {
+        return clientRepository.save(client);
+    }
+
     public Client loginClient(String login, String password) {
         return clientRepository.findByLoginAndPassword(login, password).orElse(null);
     }
@@ -44,5 +48,9 @@ public class ClientService {
 
     public void delete(Client client) {
         clientRepository.delete(client);
+    }
+
+    public void deleteById(int id) {
+        clientRepository.deleteById(id);
     }
 }
