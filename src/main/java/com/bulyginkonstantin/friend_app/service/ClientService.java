@@ -3,9 +3,11 @@ package com.bulyginkonstantin.friend_app.service;
 import com.bulyginkonstantin.friend_app.data.Client;
 import com.bulyginkonstantin.friend_app.repository.ClientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClientService {
@@ -42,7 +44,7 @@ public class ClientService {
         return clientRepository.findAllByUserName(userName);
     }
 
-    public Client findById(int id) {
+    public Optional<Client> findById(int id) {
         return clientRepository.findById(id);
     }
 
@@ -52,5 +54,13 @@ public class ClientService {
 
     public void deleteById(int id) {
         clientRepository.deleteById(id);
+    }
+
+    public Iterable<Client> findAllByOrderByIdAsc() {
+        return clientRepository.findAllByOrderByIdAsc();
+    }
+
+    public Iterable<Client> findAllWithPageAndSize(Pageable pageSize) {
+        return clientRepository.findAll(pageSize);
     }
 }

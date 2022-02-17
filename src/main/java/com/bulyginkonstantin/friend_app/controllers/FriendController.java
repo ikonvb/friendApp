@@ -64,7 +64,7 @@ public class FriendController {
         List<Integer> friendsId = friendService.findFriendIdById(currentId);
         List<Client> friends = new ArrayList<>();
         for (Integer i : friendsId) {
-            friends.add(clientService.findById(i));
+            friends.add(clientService.findById(i).get());
         }
         return friends;
     }

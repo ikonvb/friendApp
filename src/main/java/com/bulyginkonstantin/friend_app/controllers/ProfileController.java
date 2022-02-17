@@ -29,7 +29,7 @@ public class ProfileController {
         List<Integer> friendsId = friendService.findFriendIdById(currentId);
         List<Client> friends = new ArrayList<>();
         for (Integer i : friendsId) {
-            friends.add(clientService.findById(i));
+            friends.add(clientService.findById(i).get());
         }
         model.addAttribute("friendsList", friends);
         model.addAttribute("currentClientId", currentId);
@@ -39,7 +39,7 @@ public class ProfileController {
     //show profile view for current user
     @GetMapping("/show/{currentId}")
     public String showProfile(@PathVariable int currentId, Model model) {
-        Client loggedClient = clientService.findById(currentId);
+        Client loggedClient = clientService.findById(currentId).get();
         model.addAttribute("currentClientId", currentId);
         model.addAttribute("client", loggedClient);
         return "profile";
