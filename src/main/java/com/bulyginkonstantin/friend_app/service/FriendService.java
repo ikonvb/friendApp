@@ -24,4 +24,8 @@ public class FriendService {
     public void delete(Friend friend) {
         friendsRepository.delete(friend);
     }
+
+    public void deleteAllWhereId(int currentId) {
+        friendsRepository.deleteAllWhereId(currentId);
+    }
 }
