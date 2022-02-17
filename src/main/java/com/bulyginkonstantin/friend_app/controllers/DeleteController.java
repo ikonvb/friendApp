@@ -15,7 +15,7 @@ public class DeleteController {
 
     @GetMapping("/profile/delete/{currentId}")
     public String deleteProfile(@PathVariable int currentId) {
-        Client client = clientService.findById(currentId);
+        Client client = clientService.findById(currentId).get();
         clientService.delete(client);
         return "redirect:/login";
     }
