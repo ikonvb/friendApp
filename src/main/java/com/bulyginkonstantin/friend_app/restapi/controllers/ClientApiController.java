@@ -1,9 +1,8 @@
 package com.bulyginkonstantin.friend_app.restapi.controllers;
 
-import com.bulyginkonstantin.friend_app.data.Client;
-import com.bulyginkonstantin.friend_app.data.LoginClient;
-import com.bulyginkonstantin.friend_app.data.UpdateClient;
+import com.bulyginkonstantin.friend_app.data.*;
 import com.bulyginkonstantin.friend_app.service.ClientService;
+import com.bulyginkonstantin.friend_app.service.FriendService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.PageRequest;
@@ -14,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,19 +25,22 @@ public class ClientApiController {
     @Autowired
     ClientService clientService;
 
+    @Autowired
+    FriendService friendService;
+
     @GetMapping(path = "/all")
-    public Iterable<Client> getClients() {
+    public Iterable<Client> findClients() {
         return clientService.findAllByOrderByIdAsc();
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Client> getClientById(@PathVariable int id) {
+    @GetMapping("/find/{id}")
+    public ResponseEntity<Client> findClientById(@PathVariable int id) {
         Optional<Client> client = clientService.findById(id);
         return client.map(value -> new ResponseEntity<>(value, HttpStatus.OK)).orElseGet(() -> new ResponseEntity<>(null, HttpStatus.NOT_FOUND));
     }
 
     @GetMapping("/findByUserName/{userName}")
-    public ResponseEntity<List<Client>> getClientByName(@PathVariable String userName) {
+    public ResponseEntity<List<Client>> findClientByName(@PathVariable String userName) {
         List<Client> clients = clientService.findAllByUserName(userName);
         return new ResponseEntity<>(clients, HttpStatus.OK);
     }
@@ -82,6 +85,68 @@ public class ClientApiController {
     public Iterable<Client> findPaginationClient(@RequestParam int page, @RequestParam int size) {
         Pageable pageSize = PageRequest.of(page, size);
         return clientService.findAllWithPageAndSize(pageSize);
+    }
+
+    //save to friend
+    @GetMapping("/addToFriend/{currentId}/{id}")
+    public ResponseEntity<List<Client>> addFriend(@PathVariable int currentId, @PathVariable int id) {
+
+        //save to database friend entity
+        Friend friend = new Friend();
+        ClientFriendKey key = new ClientFriendKey(currentId, id);
+        friend.setId(key);
+        friendService.save(friend);
+
+        //retrieve all friends for current client
+        List<Client> friends = getClients(currentId);
+        return new ResponseEntity<>(friends, HttpStatus.OK);
+    }
+
+    //show friends for current user
+    @GetMapping("/showFriend/{currentId}")
+    public ResponseEntity<List<Client>> showFriend(@PathVariable int currentId) {
+        //retrieve all friends for current client
+        List<Client> friends = getClients(currentId);
+        return new ResponseEntity<>(friends, HttpStatus.OK);
+    }
+
+    //show friends for current user
+    @GetMapping("/find/{currentId}/all")
+    public ResponseEntity<List<Client>> findClientsForRegisteredUser(@PathVariable int currentId) {
+
+        //retrieve all friends for current client
+        List<Client> friends = getClients(currentId);
+        friends.add(clientService.findById(currentId).get());
+        //retrieve all clients for current client
+        List<Client> clients = clientService.findAll();
+        //delete all clients who are already friends
+        clients.removeAll(friends);
+
+        return new ResponseEntity<>(clients, HttpStatus.OK);
+    }
+
+
+    //delete friend
+    @GetMapping("/remove/{currentId}/{id}")
+    public ResponseEntity<List<Client>> remove(@PathVariable int currentId, @PathVariable int id) {
+
+        //delete friend for current client
+        ClientFriendKey key = new ClientFriendKey(currentId, id);
+        Friend friend = new Friend(key);
+        friendService.delete(friend);
+
+        List<Client> friends = getClients(currentId);
+
+        return new ResponseEntity<>(friends, HttpStatus.OK);
+    }
+
+    private List<Client> getClients(int currentId) {
+        List<Integer> friendsId = friendService.findFriendIdById(currentId);
+        List<Client> friends = new ArrayList<>();
+        for (Integer i : friendsId) {
+            friends.add(clientService.findById(i).get());
+        }
+        return friends;
     }
 
 }
