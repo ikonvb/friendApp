@@ -15,7 +15,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/profile")
-public class ProfileController {
+public class ClientProfileController {
 
     @Autowired
     FriendService friendService;
