@@ -29,7 +29,8 @@
 ### swagger ui page
 ![swagger](https://user-images.githubusercontent.com/42876203/154678126-36680c37-5c10-49a6-b518-674d3e4c43c2.png)
 
-### swagger ui page with endpoints
+### swagger documentation 
+### Rest Api endpoints   
 ![swagger_endpoints](https://user-images.githubusercontent.com/42876203/154678250-c10eb6b6-203d-4143-b275-9291eeb858dc.png)
 
 
