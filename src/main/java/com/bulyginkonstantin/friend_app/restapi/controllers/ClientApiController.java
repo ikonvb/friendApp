@@ -29,54 +29,9 @@ public class ClientApiController {
     @Autowired
     FriendService friendService;
 
-    @PostMapping(path = "/save", consumes = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(HttpStatus.CREATED)
-    @ApiOperation("Register new client")
-    public Client createClient(@Valid @RequestBody Client client) {
-        return clientService.saveClient(client);
-    }
-
-    @PostMapping(path = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(HttpStatus.OK)
-    @ApiOperation("Login registered client")
-    public ResponseEntity<Client> loginClient(@Valid @RequestBody LoginClient loginClient) {
-        Client client = clientService.loginClient(loginClient.getLogin(), loginClient.getPassword());
-        if (client == null) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(client, HttpStatus.OK);
-    }
-
-    @PatchMapping(path = "/edit/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    @ApiOperation("Edit registered client by id")
-    public ResponseEntity<Client> updateClient(@PathVariable("id") int id, @Valid @RequestBody UpdateClient updateClient) {
-        Optional<Client> optCli = clientService.findById(id);
-        if (optCli.isPresent()) {
-            optCli.get().setLogin(updateClient.getLogin());
-            optCli.get().setUserName(updateClient.getUserName());
-            optCli.get().setEmail(updateClient.getEmail());
-            clientService.saveClient(optCli.get());
-            return new ResponseEntity<>(optCli.get(), HttpStatus.OK);
-        }
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-    }
-
-    @DeleteMapping(path = "/delete/{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @ApiOperation("Delete one registered client by id")
-    public void deleteClient(@PathVariable("id") int id) {
-        try {
-            Client client = clientService.findById(id).get();
-            friendService.deleteAllWhereId(id);
-            clientService.deleteById(id);
-        } catch (EmptyResultDataAccessException err) {
-            err.printStackTrace();
-        }
-    }
-
     //add to friend
     @GetMapping("/{currentId}/addToFriend/{id}")
-    @ApiOperation("Add one registered client to friend of requesting client")
+    @ApiOperation("Add one registered user to a friend for the current user and return list of all friends for current user")
     public ResponseEntity<List<Client>> addFriend(@PathVariable int currentId, @PathVariable int id) {
         Friend friend = new Friend();
         ClientFriendKey key = new ClientFriendKey(currentId, id);
@@ -87,18 +42,9 @@ public class ClientApiController {
         return new ResponseEntity<>(friends, HttpStatus.OK);
     }
 
-    //show friends for current user
-    @GetMapping("/{currentId}/showFriend")
-    @ApiOperation("Show list of all friends for requesting client")
-    public ResponseEntity<List<Client>> showFriend(@PathVariable int currentId) {
-        //retrieve all friends for current client
-        List<Client> friends = getClients(currentId);
-        return new ResponseEntity<>(friends, HttpStatus.OK);
-    }
-
     //show remaining clients for current user to add to friends
     @GetMapping("/{currentId}/find/all")
-    @ApiOperation("Show list of all clients available to add to a friend")
+    @ApiOperation("Returns list of all users available to add to a friend for current user")
     public ResponseEntity<List<Client>> findClientsForRegisteredUser(@PathVariable int currentId) {
         //retrieve all friends for current client
         List<Client> friends = getClients(currentId);
@@ -111,7 +57,7 @@ public class ClientApiController {
     }
 
     @GetMapping("/{currentId}/findByUserName/{userName}")
-    @ApiOperation("Get list of all registered client by name")
+    @ApiOperation("Returns list of registered users or one user with requested name available to add to a friend")
     public ResponseEntity<List<Client>> findClientByName(@PathVariable int currentId, @PathVariable String userName) {
         List<Client> friends = getClients(currentId);
         friends.add(clientService.findById(currentId).get());
@@ -120,10 +66,9 @@ public class ClientApiController {
         return new ResponseEntity<>(clients, HttpStatus.OK);
     }
 
-
     //delete friend
     @GetMapping("/{currentId}/remove/{id}")
-    @ApiOperation("Delete one friend from friends list for requesting client")
+    @ApiOperation("Delete one friend from friends list for current user and returns list of remain friends")
     public ResponseEntity<List<Client>> remove(@PathVariable int currentId, @PathVariable int id) {
         //delete friend for current client
         ClientFriendKey key = new ClientFriendKey(currentId, id);
@@ -131,6 +76,64 @@ public class ClientApiController {
         friendService.delete(friend);
         List<Client> friends = getClients(currentId);
         return new ResponseEntity<>(friends, HttpStatus.OK);
+    }
+
+    //show friends for current user
+    @GetMapping("/{currentId}/showFriends")
+    @ApiOperation("Returns list of all friends for current user")
+    public ResponseEntity<List<Client>> showFriend(@PathVariable int currentId) {
+        //retrieve all friends for current client
+        List<Client> friends = getClients(currentId);
+        return new ResponseEntity<>(friends, HttpStatus.OK);
+    }
+
+    @DeleteMapping(path = "/delete/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @ApiOperation("Delete one registered user by id and returns http status 204 no content")
+    public void deleteClient(@PathVariable("id") int id) {
+        try {
+            Client client = clientService.findById(id).get();
+            friendService.deleteAllWhereId(id);
+            clientService.deleteById(id);
+        } catch (EmptyResultDataAccessException err) {
+            err.printStackTrace();
+        }
+    }
+
+    @PatchMapping(path = "/edit/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation("Edit registered user by id and returns edited user")
+    public ResponseEntity<Client> updateClient(@PathVariable("id") int id, @Valid @RequestBody UpdateClient updateClient) {
+        Optional<Client> optCli = clientService.findById(id);
+        if (optCli.isPresent()) {
+            optCli.get().setLogin(updateClient.getLogin());
+            optCli.get().setUserName(updateClient.getUserName());
+            optCli.get().setEmail(updateClient.getEmail());
+            clientService.saveClient(optCli.get());
+            return new ResponseEntity<>(optCli.get(), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+
+    @PostMapping(path = "/login", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation("Login registered user and returns user")
+    public ResponseEntity<Client> loginClient(@Valid @RequestBody LoginClient loginClient) {
+        Client client = clientService.loginClient(loginClient.getLogin(), loginClient.getPassword());
+        if (client == null) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(client, HttpStatus.OK);
+    }
+
+    @PostMapping(path = "/save", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation("Register new user and returns registered user if user with the same login exists returns HttpStatus 400")
+    public ResponseEntity<Client> createClient(@Valid @RequestBody Client client) {
+        Client regClient = clientService.findByLogin(client.getLogin());
+        if (regClient == null) {
+            clientService.saveClient(client);
+            return new ResponseEntity<>(client, HttpStatus.CREATED);
+        }
+        return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
 
     private List<Client> getClients(int currentId) {

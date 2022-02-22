@@ -30,17 +30,25 @@ public class RegisterController {
 
     //save to DB from register form
     @PostMapping("/save")
-    public String saveAccount(@Valid @ModelAttribute Client client, Errors errors) {
+    public String saveAccount(@Valid @ModelAttribute Client client, Errors errors, Model model) {
         if (errors.hasErrors()) {
             return "register";
         }
+        Client regClient = clientService.findByLogin(client.getLogin());
 
-        clientService.registerClient(
-                client.getLogin(),
-                client.getUserName(),
-                client.getEmail(),
-                client.getPassword(),
-                client.getConfirmPassword());
-        return "login";
+        if (regClient == null) {
+            clientService.registerClient(
+                    client.getLogin(),
+                    client.getUserName(),
+                    client.getEmail(),
+                    client.getPassword(),
+                    client.getConfirmPassword());
+            return "login";
+        } else {
+            model.addAttribute("errorLogin", client.getLogin() + " already exists");
+            errors.reject(client.getLogin());
+            return "register";
+        }
+
     }
 }

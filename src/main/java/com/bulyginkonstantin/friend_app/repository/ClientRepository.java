@@ -21,4 +21,6 @@ public interface ClientRepository extends JpaRepository<Client, Integer> {
 
     Optional<Client> findById(int clientId);
 
+    Client findByLogin(String login);
+
 }

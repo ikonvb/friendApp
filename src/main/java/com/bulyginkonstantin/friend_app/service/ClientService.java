@@ -36,6 +36,10 @@ public class ClientService {
         return clientRepository.findByLoginAndPassword(login, password).orElse(null);
     }
 
+    public Client findByLogin(String login) {
+        return clientRepository.findByLogin(login);
+    }
+
     public List<Client> findAll() {
         return clientRepository.findAll();
     }
@@ -55,6 +59,7 @@ public class ClientService {
     public void deleteById(int id) {
         clientRepository.deleteById(id);
     }
+
 
     public Iterable<Client> findAllByOrderByIdAsc() {
         return clientRepository.findAllByOrderByIdAsc();
