@@ -31,7 +31,5 @@
 
 ### swagger documentation 
 ### Rest Api endpoints   
-![swagger_endpoints](https://user-images.githubusercontent.com/42876203/154678250-c10eb6b6-203d-4143-b275-9291eeb858dc.png)
-
-
+![swagger_endpoints](https://user-images.githubusercontent.com/42876203/155193534-18c69c6a-5773-4c6a-80cc-89f5834ec2a5.jpg)
 
