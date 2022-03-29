@@ -1,4 +1,5 @@
-# Find friend app    [EN](https://github.com/kostyaFrom/friendApp/blob/master/README.en.md)
+[EN](https://github.com/kostyaFrom/friendApp/blob/master/README.en.md)    
+# Find friend app    
 
 [Рабочая версия с UI на Heroku](https://clients-friends-app.herokuapp.com/)   
 [Ссылка на документацию для Rest Api (Swagger ui) на Heroku](https://clients-friends-app.herokuapp.com/swagger-ui/)   
