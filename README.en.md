@@ -1,4 +1,5 @@
-# Find friend app    [RU](https://github.com/kostyaFrom/friendApp/blob/master/README.md)
+[RU](https://github.com/kostyaFrom/friendApp/blob/master/README.md)    
+# Find friend app    
 
 [Working version with UI on Heroku](https://clients-friends-app.herokuapp.com/)   
 [Link to documentation for Rest Api (Swagger ui) on Heroku](https://clients-friends-app.herokuapp.com/swagger-ui/)   
