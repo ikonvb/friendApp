@@ -1,13 +1,13 @@
 # Find friend app    [RU](https://github.com/kostyaFrom/friendApp/blob/master/README.md)
 
-[Рабочая версия с UI на Heroku](https://clients-friends-app.herokuapp.com/)   
-[Ссылка на документацию для Rest Api (Swagger ui) на Heroku](https://clients-friends-app.herokuapp.com/swagger-ui/)   
-Так как приложение развернуто на Heroku без подписки, следует подождать пока оно запуститься.
-Ожидание может составить от 10 секунд и более.
+[Working version with UI on Heroku](https://clients-friends-app.herokuapp.com/)   
+[Link to documentation for Rest Api (Swagger ui) on Heroku](https://clients-friends-app.herokuapp.com/swagger-ui/)   
+Since the application is deployed on Heroku without a subscription, you should wait until it starts.    
+The waiting time can be from 10 seconds or more.    
 
-**Описание**  
-Приложение имеет front-side, back-end и Rest Api. Позволяет регистрировать нового пользователя, искать уже зарегистрированных ползователей, добавлять их в друзья или удалять из друзей.    
-Технологии:    
+**Description**  
+Application has front-side back-end and Rest Api. Allows to register new user to search already registered user and to add them to the friends list or remove from it.    
+Technologies:    
 + Java 11.0.9
 + Maven 3.8.2
 + Spring Boot 2.6.3
